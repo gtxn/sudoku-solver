@@ -71,7 +71,7 @@ class board():
                     self.boardArr[row][col].number = str(bArr[row][col])
 
         else:
-            print('Puzzle unsolvable')
+            return False
 
     def clear(self):
         for row in self.boardArr:

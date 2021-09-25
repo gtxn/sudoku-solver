@@ -53,7 +53,7 @@ def isPossible(board, val, square):
     return True
 
 
-def solve(board):
+def solve(board, recurIter=0):
     emptySq = findEmpty(board)
     if not emptySq:
         return True
@@ -64,9 +64,15 @@ def solve(board):
         if isPossible(board, i, emptySq):
             board[empY][empX] = i
 
-            if solve(board):
+            if solve(board, recurIter+1):
                 return True
 
             board[empY][empX] = 0
 
     return False
+
+
+board = [[1, 1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [
+    0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+solve(board)

@@ -3,6 +3,8 @@ import pygame
 from squares import square, miniGrid
 from buttons import submitButton, clearButton
 from board import board
+from alert import alert
+
 import setup
 
 pygame.init()
@@ -15,11 +17,13 @@ class game():
         self.submitBtn = submitButton()
         self.clearBtn = clearButton()
         self.selectedSqCoord = self.board.selectedSqCoord
+        self.alert = alert()
 
     def render(self):
         self.board.drawBoard()
         self.submitBtn.draw()
         self.clearBtn.draw()
+        self.alert.draw('Enter puzzle')
 
     def updateSquare(self, text):
         self.board.updateSelectedSq(text)
@@ -32,11 +36,14 @@ class game():
         self.board.checkForClickedSquare(mPos)
 
         if self.submitBtn.checkIfClicked(mPos):
-            print('solving...')
-            self.board.solve()
+            self.alert.draw('Solving...')
+            s = self.board.solve()
+            if not s:
+                self.alert.draw('Unsolvable')
 
         elif self.clearBtn.checkIfClicked(mPos):
             self.board.clear()
+            self.alert.draw('Enter puzzle')
 
 
 def main():
