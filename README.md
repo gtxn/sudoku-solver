@@ -9,3 +9,8 @@ pip3 install -r requirements.txt
 python3 app.py
 ```
 
+## Demo
+Only valid sudoku puzzles are allowed. Inputing puzzle at 0:15. Solving at 0:55. 
+
+https://user-images.githubusercontent.com/59089164/152635642-1456b85b-35c4-49b1-b536-896ea72c323c.mov
+
