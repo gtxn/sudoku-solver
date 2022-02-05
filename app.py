@@ -1,8 +1,8 @@
 import pygame
-from setup import *
-from alert import alert
-from board import board
-from buttons import submitButton, clearButton
+from utils.setup import *
+from components.alert import alert
+from components.board import board
+from components.buttons import submitButton, clearButton
 
 class game():
     def __init__(self):

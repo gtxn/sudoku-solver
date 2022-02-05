@@ -1,5 +1,5 @@
 import pygame
-from setup import *
+from utils.setup import *
 
 class square():
     def __init__(self, squaresize, x=0, y=0):

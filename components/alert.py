@@ -1,5 +1,5 @@
 import pygame
-from setup import *
+from utils.setup import *
 
 class alert():
     def __init__(self, WIDTH):

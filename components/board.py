@@ -1,7 +1,7 @@
 import pygame
 from squares import square, miniGrid
-from solver import solve
-from setup import *
+from utils.solver import solve
+from utils.setup import *
 
 class board():
     def __init__(self):
