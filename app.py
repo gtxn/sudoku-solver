@@ -1,15 +1,8 @@
 import pygame
-
-from squares import square, miniGrid
-from buttons import submitButton, clearButton
-from board import board
+from setup import *
 from alert import alert
-
-import setup
-
-pygame.init()
-pygame.display.set_caption('Sudoku solver')
-
+from board import board
+from buttons import submitButton, clearButton
 
 class game():
     def __init__(self):
@@ -17,13 +10,14 @@ class game():
         self.submitBtn = submitButton()
         self.clearBtn = clearButton()
         self.selectedSqCoord = self.board.selectedSqCoord
-        self.alert = alert()
+        self.alert = alert(WIDTH)
+        self.alert_text = 'Enter puzzle'
 
     def render(self):
         self.board.drawBoard()
         self.submitBtn.draw()
         self.clearBtn.draw()
-        self.alert.draw('Enter puzzle')
+        self.alert.draw(self.alert_text)
 
     def updateSquare(self, text):
         self.board.updateSelectedSq(text)
@@ -36,20 +30,24 @@ class game():
         self.board.checkForClickedSquare(mPos)
 
         if self.submitBtn.checkIfClicked(mPos):
-            self.alert.draw('Solving...')
+            self.alert_text = 'Solving...'
             s = self.board.solve()
             if not s:
-                self.alert.draw('Unsolvable')
+                self.alert_text = 'UNSOLVABLE'
+                self.board.clear()
+            
+            else:
+                self.alert_text = 'Solved!'
 
         elif self.clearBtn.checkIfClicked(mPos):
             self.board.clear()
-            self.alert.draw('Enter puzzle')
+            self.alert_text = 'Enter puzzle'
 
 
 def main():
     g = game()
     run = True
-
+    
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -78,7 +76,7 @@ def main():
                 g.checkClick(mPos)
 
         # Draw background
-        setup.WIN.fill([255, 255, 255])
+        WIN.fill([255, 255, 255])
 
         # Render board
         g.render()

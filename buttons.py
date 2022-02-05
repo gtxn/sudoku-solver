@@ -1,6 +1,5 @@
 import pygame
-import setup
-
+from setup import *
 
 class button():
     def __init__(self, xPos, yPos, width=80, height=30):
@@ -16,10 +15,10 @@ class button():
         textSurface = self.font.render(btnText, True, self.colour)
         x = (self.width-textSurface.get_rect().width) / 2 + self.xPos
         y = (self.height-textSurface.get_rect().height)/2 + self.yPos
-        setup.WIN.blit(textSurface, (x, y))
+        WIN.blit(textSurface, (x, y))
 
-        pygame.draw.rect(setup.WIN, self.colour, (self.xPos, self.yPos,
-                                                  self.width, self.height), 2)
+        pygame.draw.rect(WIN, self.colour, (self.xPos, self.yPos,
+                                                 self.width, self.height), 2)
 
     def checkIfClicked(self, mPos):
         if self.rect.collidepoint(mPos):
@@ -28,10 +27,10 @@ class button():
 
 class submitButton(button):
     def __init__(self):
-        self.width = setup.BUTTONWIDTH
-        self.height = setup.BUTTONHEIGHT
-        super().__init__(xPos=setup.WIDTH/2 - self.width*1.3,
-                         yPos=(setup.HEIGHT - setup.SQUARESIZE*10)/2 + setup.SQUARESIZE*10)
+        self.width = BUTTONWIDTH
+        self.height = BUTTONHEIGHT
+        super().__init__(xPos=WIDTH/2 - self.width*1.3,
+                         yPos=(HEIGHT - SQUARESIZE*10)/2 + SQUARESIZE*10)
 
     def draw(self):
         super().draw('Solve')
@@ -39,10 +38,10 @@ class submitButton(button):
 
 class clearButton(button):
     def __init__(self):
-        self.width = setup.BUTTONWIDTH
-        self.height = setup.BUTTONHEIGHT
-        super().__init__(setup.WIDTH/2 + self.width * 0.3,
-                         (setup.HEIGHT - setup.SQUARESIZE*10)/2 + setup.SQUARESIZE*10)
+        self.width = BUTTONWIDTH
+        self.height = BUTTONHEIGHT
+        super().__init__(WIDTH/2 + self.width * 0.3,
+                         (HEIGHT - SQUARESIZE*10)/2 + SQUARESIZE*10)
 
     def draw(self):
         super().draw('Clear')

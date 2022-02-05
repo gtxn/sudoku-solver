@@ -1,12 +1,11 @@
 import pygame
-import setup
-
+from setup import *
 
 class square():
-    def __init__(self, x=0, y=0):
+    def __init__(self, squaresize, x=0, y=0):
         self.number = ''
-        self.width = setup.SQUARESIZE
-        self.height = setup.SQUARESIZE
+        self.width = squaresize
+        self.height = squaresize
         self.defFont = pygame.font.SysFont('Comic Sans MS', 20)
         self.filledFont = pygame.font.SysFont('Comic Sans MS', 20)
 
@@ -30,22 +29,22 @@ class square():
         squareThickness = 5 if self.filled else 2
 
         # Draw bounding rectangle
-        pygame.draw.rect(setup.WIN, squareColour, (self.xPos,
-                                                   self.yPos, self.width, self.height), squareThickness)
+        pygame.draw.rect(WIN, squareColour, (self.xPos,
+                                             self.yPos, self.width, self.height), squareThickness)
 
         textSurface = squareFont.render(self.number, True, squareColour)
         x = (self.width-textSurface.get_rect().width) / 2 + self.xPos
         y = self.height/2-textSurface.get_rect().height + self.yPos
-        setup.WIN.blit(textSurface, (x, y))
+        WIN.blit(textSurface, (x, y))
 
 
 class miniGrid():
     def __init__(self, xPos=0, yPos=0):
-        self.size = 3 * setup.SQUARESIZE
+        self.size = 3 * SQUARESIZE
         self.colour = (0, 0, 0)
         self.xPos = xPos
         self.yPos = yPos
 
     def draw(self):
-        pygame.draw.rect(setup.WIN, self.colour, (self.xPos,
-                                                  self.yPos, self.size, self.size), 4)
+        pygame.draw.rect(WIN, self.colour, (self.xPos,
+                                            self.yPos, self.size, self.size), 4)

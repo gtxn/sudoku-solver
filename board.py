@@ -1,8 +1,7 @@
 import pygame
-import setup
 from squares import square, miniGrid
 from solver import solve
-
+from setup import *
 
 class board():
     def __init__(self):
@@ -10,10 +9,10 @@ class board():
         for j in range(9):
             tmpRow = []
             for i in range(9):
-                s = square()
+                s = square(SQUARESIZE)
                 w, h = s.width, s.height
-                s.xPos = ((setup.WIDTH-10*w)/2) + i*w + w/2
-                s.yPos = ((setup.HEIGHT-10*h)/2) + j*h + h/2
+                s.xPos = ((WIDTH-10*w)/2) + i*w + w/2
+                s.yPos = ((HEIGHT-10*h)/2) + j*h + h/2
                 s.coord = [j, i]
                 tmpRow.append(s)
             tmpBoardArr.append(tmpRow)
@@ -22,9 +21,9 @@ class board():
         for j in range(3):
             tmpRow = []
             for i in range(3):
-                size = setup.SQUARESIZE * 3
-                gxPos = ((setup.WIDTH-10*w)/2) + i*size + w/2
-                gyPos = ((setup.HEIGHT-10*h)/2) + j*size + h/2
+                size = SQUARESIZE * 3
+                gxPos = ((WIDTH-10*w)/2) + i*size + w/2
+                gyPos = ((HEIGHT-10*h)/2) + j*size + h/2
                 miniG = miniGrid(gxPos, gyPos)
                 tmpRow.append(miniG)
             tmpMiniGridArr.append(tmpRow)
@@ -61,17 +60,16 @@ class board():
 
     def solve(self):
         bArr = self.bToArray()
-        print(bArr)
         isSolved = solve(bArr)
+        
         if isSolved:
-            print(bArr)
             self.selectedSqCoord = None
             for row in range(len(bArr)):
                 for col in range(len(bArr[row])):
                     self.boardArr[row][col].number = str(bArr[row][col])
+            return True
 
-        else:
-            return False
+        return False
 
     def clear(self):
         for row in self.boardArr:
@@ -88,7 +86,6 @@ class board():
             for square in row:
                 r = square.getRect()
                 if r.collidepoint(mPos):
-                    print('collide', r)
                     self.selectedSqCoord = square.coord
 
     def updateSelectedSq(self, num):
