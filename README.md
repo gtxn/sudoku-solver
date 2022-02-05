@@ -3,6 +3,8 @@ Using a recursion to backtrack steps, it solves any sudoku puzzle! GUI was made 
 
 ## To try it out
 ```
+git clone https://github.com/gtxn/sudoku-solver.git
+cd sudoku-solver
 pip3 install -r requirements.txt
 python3 app.py
 ```
