@@ -1,5 +1,5 @@
 import pygame
-from squares import square, miniGrid
+from components.squares import square, miniGrid
 from utils.solver import solve
 from utils.setup import *
 
